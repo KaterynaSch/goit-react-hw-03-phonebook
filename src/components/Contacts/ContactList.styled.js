@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const List = styled.ul`       
-    padding: 10px;
+    padding: ${p => p.theme.spacing(3)};
     display: flex;
     flex-direction: column;   
-    gap: 16px;
+    gap: ${p => p.theme.spacing(4)};
 `

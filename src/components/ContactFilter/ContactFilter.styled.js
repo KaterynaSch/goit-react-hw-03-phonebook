@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
+
 export const FilterLabel = styled.label`
     width: 300px;   
     display: flex;
     flex-direction: column;
-    gap: 8px;     
+    gap:${p => p.theme.spacing(2)};    
 `
 export const FilterInput = styled.input`     
-    padding: 10px;
-    border: 1px solid #27a688;
-    border-radius: 10px ;
+    padding: ${p => p.theme.spacing(3)};
+    border: 1px solid ${p => p.theme.colors.secondaryColor};
+    border-radius: ${p => p.theme.radius.m} ;
     outline: transparent; 
 `

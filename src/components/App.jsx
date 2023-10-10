@@ -16,6 +16,21 @@ export class App extends Component {
     filter: '',    
   }
 
+ componentDidUpdate(prevState) {   
+    if (prevState.contacts !== this.state.contacts){// якщо в попереднтому state контакти співпадають з this.state, то записуємо this.state.contacts в LS
+      localStorage.setItem("saved-contacts", JSON.stringify(this.state.contacts));
+    }    
+  };
+
+  componentDidMount() { 
+    const savedContacts = localStorage.getItem(`saved-contacts`);// читаємо з LS збережені контакти
+    if(savedContacts !== null) {// якщо savedContacts не пустий...     
+      this.setState({
+        contacts : JSON.parse(savedContacts)// парсимо з LS контакти в state
+      })
+    }   
+  }; 
+
   getContactFiltered = () => {
     const { contacts, filter } = this.state;
     return contacts.filter((contact) =>
@@ -33,7 +48,7 @@ export class App extends Component {
       return
     }
     this.setState(prevState => ({
-      contacts: [...prevState.contacts, {...newContact, id: nanoid()}]
+      contacts: [...prevState.contacts, {id: nanoid(),...newContact }]
       
     }))
   };
